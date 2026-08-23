@@ -1,0 +1,1429 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      NutriMenopause - Nutrition Sur-Mesure 45+ & Scan Frigo Intelligent
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: #fbf9f5;
+        color: #1f2923;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      .font-serif-title {
+        font-family: "Playfair Display", serif;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow:
+          0 10px 30px -5px rgba(26, 58, 42, 0.05),
+          0 0 0 1px rgba(26, 58, 42, 0.03);
+      }
+      .gradient-forest {
+        background: linear-gradient(
+          135deg,
+          #132d20 0%,
+          #1e4531 45%,
+          #2a5a41 100%
+        );
+      }
+      .gradient-gold-cta {
+        background: linear-gradient(135deg, #e8a838 0%, #c88318 100%);
+        box-shadow: 0 8px 24px -4px rgba(200, 131, 24, 0.4);
+      }
+      .gradient-gold-cta:hover {
+        background: linear-gradient(135deg, #f0b446 0%, #d88e1e 100%);
+        box-shadow: 0 12px 28px -4px rgba(200, 131, 24, 0.5);
+      }
+      .gradient-emerald-cta {
+        background: linear-gradient(135deg, #1f4f38 0%, #133424 100%);
+        box-shadow: 0 8px 24px -4px rgba(26, 74, 50, 0.35);
+      }
+      .gradient-emerald-cta:hover {
+        background: linear-gradient(135deg, #265f44 0%, #19402d 100%);
+        box-shadow: 0 12px 28px -4px rgba(26, 74, 50, 0.45);
+      }
+      .shimmer-badge {
+        background: linear-gradient(
+          90deg,
+          #fdf8eb 0%,
+          #fae8c4 50%,
+          #fdf8eb 100%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 3s infinite;
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+      .pulsing-dot {
+        animation: pulseScan 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes pulseScan {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(1.25);
+        }
+      }
+      .scan-beam {
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(52, 211, 153, 0.45),
+          #10b981,
+          transparent
+        );
+        animation: scanSweep 2.2s ease-in-out infinite alternate;
+      }
+      @keyframes scanSweep {
+        0% {
+          top: 0%;
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.9;
+        }
+        100% {
+          top: 88%;
+          opacity: 0.3;
+        }
+      }
+      .blur-paywall {
+        filter: blur(9px);
+        user-select: none;
+        pointer-events: none;
+        transition: filter 0.5s ease;
+      }
+      .unlocked-content {
+        filter: blur(0px) !important;
+        user-select: auto !important;
+        pointer-events: auto !important;
+      }
+      .ingredient-tag {
+        background: #ffffff;
+        border: 1px solid #e7ebe8;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .ingredient-tag:hover {
+        border-color: #2a5a41;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(42, 90, 65, 0.08);
+      }
+      .custom-checkbox:checked {
+        background-color: #1e4531;
+        border-color: #1e4531;
+      }
+      /* Smooth modal transition */
+      .modal-backdrop {
+        background: rgba(15, 30, 22, 0.72);
+        backdrop-filter: blur(8px);
+      }
+    </style>
+  </head>
+
+  <body class="antialiased">
+    <!-- Top Announcement Bar -->
+    <aside
+      class="bg-[#132d20] text-emerald-100/90 text-xs py-2 px-4 text-center border-b border-emerald-800/40 font-medium"
+    >
+      <div
+        class="max-w-6xl mx-auto flex items-center justify-center gap-2 flex-wrap"
+      >
+        <span
+          class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-slate-900 uppercase tracking-wide"
+          >Offre Découverte</span
+        >
+        <span
+          >Accès illimité à l’I.A. Nutritionnelle :
+          <strong>7 jours d'essai gratuit</strong> (puis 7,99 €/mois, sans
+          engagement).</span
+        >
+        <button
+          onclick="openPaywallModal('top_bar')"
+          class="underline hover:text-white font-semibold ml-1 cursor-pointer"
+        >
+          Profiter de l'offre →
+        </button>
+      </div>
+    </aside>
+
+    <!-- Navigation -->
+    <header
+      class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-[#e5ebe7]"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl gradient-forest text-white flex items-center justify-center font-bold text-lg shadow-sm"
+          >
+            🌿
+          </div>
+          <div>
+            <span
+              class="text-xl font-bold tracking-tight text-[#132d20] flex items-center gap-1.5 font-serif-title"
+            >
+              NutriMenopause
+              <span
+                class="text-[10px] font-sans font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800"
+                >45+ Clinique</span
+              >
+            </span>
+            <p class="text-[11px] text-gray-500 font-medium leading-tight">
+              Équilibre Hormonal, Masse Musculaire & Métabolisme
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div
+            id="trialBadgeNav"
+            class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-emerald-500 pulsing-dot"
+            ></span>
+            <span>Essai 7j : 0,00 €</span>
+          </div>
+          <button
+            onclick="openPaywallModal('nav_button')"
+            class="gradient-emerald-cta text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 rounded-xl transition duration-200 flex items-center gap-2 cursor-pointer shadow-sm"
+          >
+            <span>Débloquer mon plan</span>
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+      <!-- Hero / Header Banner -->
+      <section
+        class="gradient-forest rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden"
+      >
+        <!-- Background subtle patterns -->
+        <div
+          class="absolute -right-16 -bottom-16 w-72 h-72 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"
+        ></div>
+        <div
+          class="absolute right-10 top-6 w-32 h-32 rounded-full bg-amber-400/10 blur-2xl pointer-events-none"
+        ></div>
+
+        <div class="relative z-10 grid md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-8 space-y-4">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-emerald-200 text-xs font-medium"
+            >
+              <span>✨ Nutrition intelligente & anti-inflammatoire</span>
+              <span class="w-1 h-1 rounded-full bg-emerald-300"></span>
+              <span>Spécial Périménopause & Ménopause</span>
+            </div>
+            <h1
+              class="text-2xl sm:text-4xl font-bold tracking-tight text-white font-serif-title leading-tight"
+            >
+              Transformez ce qu'il y a dans votre frigo en
+              <span class="text-amber-300 italic"
+                >repas hormonalement équilibré</span
+              >
+            </h1>
+            <p
+              class="text-emerald-100/90 text-sm sm:text-base max-w-2xl leading-relaxed"
+            >
+              Prenez une photo de vos ingrédients. Notre algorithme certifié
+              adapte automatiquement les apports en protéines (>30g),
+              phytoestrogènes, calcium et fibres pour contrer la baisse
+              d'œstrogènes et le ralentissement métabolique.
+            </p>
+
+            <!-- Free Scan Guarantee Strip -->
+            <div
+              class="pt-2 flex flex-wrap items-center gap-4 text-xs text-emerald-200 font-medium"
+            >
+              <div class="flex items-center gap-1.5">
+                <svg
+                  class="w-4 h-4 text-amber-300"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>Scan IA Frigo 100% Gratuit</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <svg
+                  class="w-4 h-4 text-amber-300"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>Essai 7 jours sans risque</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <svg
+                  class="w-4 h-4 text-amber-300"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>Résiliation en 1 clic</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Profile Card Summary -->
+          <div
+            class="md:col-span-4 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 text-white space-y-3"
+          >
+            <div
+              class="flex items-center justify-between pb-3 border-b border-white/10"
+            >
+              <span
+                class="text-xs uppercase tracking-wider text-emerald-200 font-semibold"
+                >Profil Métabolique</span
+              >
+              <span
+                class="text-xs bg-emerald-400/20 text-emerald-200 px-2 py-0.5 rounded-full font-medium"
+                >Femme 48 ans</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-center text-xs">
+              <div class="bg-black/20 rounded-xl p-2.5">
+                <div class="text-lg font-bold text-white">62 kg</div>
+                <div class="text-[10px] text-emerald-200">
+                  165 cm · IMC 22.8
+                </div>
+              </div>
+              <div class="bg-black/20 rounded-xl p-2.5">
+                <div class="text-lg font-bold text-amber-300">+35g</div>
+                <div class="text-[10px] text-emerald-200">
+                  Cible Protéines / repas
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] text-emerald-100/80 leading-snug">
+              💡
+              <em
+                >Phase : Périménopause. Objectif prioritaire : préserver le
+                capital musculaire et stabiliser la glycémie post-prandiale.</em
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1 : SCANNER DU FRIGO (GRATUIT & INTERACTIF) -->
+      <section class="glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-5"
+        >
+          <div>
+            <div
+              class="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1"
+            >
+              <span class="w-2 h-2 rounded-full bg-emerald-600"></span> Étape 1
+              : Numérisation Instantanée
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#132d20]">
+              Scan Frigo & Placard
+            </h2>
+            <p class="text-sm text-gray-500">
+              Prenez une photo ou testez notre scan automatique pour générer la
+              recette adaptée à vos hormones.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button
+              id="rescanBtn"
+              onclick="simulateScanAnimation()"
+              class="px-4 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-semibold flex items-center gap-2 border border-emerald-200 transition"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+              <span>Relancer un Scan IA</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Scan Simulator Box -->
+        <div class="grid lg:grid-cols-12 gap-6 items-center">
+          <!-- Photo Scanner View -->
+          <div
+            class="lg:col-span-5 relative rounded-2xl overflow-hidden bg-slate-900 aspect-4/3 sm:aspect-video lg:aspect-square flex items-center justify-center group shadow-inner"
+          >
+            <img
+              id="fridgeImage"
+              src="https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=800&q=80"
+              alt="Contenu Frigo"
+              class="w-full h-full object-cover opacity-85 transition duration-500 group-hover:scale-105"
+            />
+
+            <!-- Scan Laser Line -->
+            <div
+              id="scanLaser"
+              class="absolute inset-x-0 h-16 scan-beam pointer-events-none"
+            ></div>
+
+            <!-- Detection Bounding Boxes (simulated) -->
+            <div
+              class="absolute top-[20%] left-[18%] px-2 py-0.5 rounded bg-emerald-600/90 text-white text-[10px] font-bold tracking-wide backdrop-blur-sm border border-emerald-300 shadow"
+            >
+              Poulet blanc · 150g
+            </div>
+            <div
+              class="absolute top-[48%] right-[22%] px-2 py-0.5 rounded bg-emerald-600/90 text-white text-[10px] font-bold tracking-wide backdrop-blur-sm border border-emerald-300 shadow"
+            >
+              Brocolis frais · 200g
+            </div>
+            <div
+              class="absolute bottom-[22%] left-[30%] px-2 py-0.5 rounded bg-emerald-600/90 text-white text-[10px] font-bold tracking-wide backdrop-blur-sm border border-emerald-300 shadow"
+            >
+              Œufs fermiers · x3
+            </div>
+            <div
+              class="absolute top-[14%] right-[12%] px-2 py-0.5 rounded bg-amber-500/90 text-white text-[10px] font-bold tracking-wide backdrop-blur-sm border border-amber-200 shadow"
+            >
+              Fromage blanc 0%
+            </div>
+
+            <!-- Floating Status Badge -->
+            <div
+              class="absolute bottom-3 inset-x-3 bg-black/75 backdrop-blur-md rounded-xl p-2.5 text-white flex items-center justify-between border border-white/10"
+            >
+              <div class="flex items-center gap-2 text-xs">
+                <span
+                  class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulsing-dot"
+                ></span>
+                <span id="scanStatusText" class="font-medium text-emerald-200"
+                  >8 Ingrédients clés identifiés avec succès</span
+                >
+              </div>
+              <span class="text-[10px] text-gray-400">Précision IA 99.2%</span>
+            </div>
+          </div>
+
+          <!-- Detected Ingredients List -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3
+                class="text-sm font-bold uppercase tracking-wider text-gray-600"
+              >
+                Ingrédients Détectés dans votre frigo
+              </h3>
+              <span
+                class="text-xs text-emerald-700 font-semibold bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200"
+                >Frigo scanné à l'instant</span
+              >
+            </div>
+
+            <div class="flex flex-wrap gap-2.5" id="ingredientsList">
+              <div
+                class="ingredient-tag rounded-full px-3.5 py-2 text-xs font-semibold text-gray-700 flex items-center gap-2"
+              >
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Poulet
+                cuit (150g)
+              </div>
+              <div
+                class="ingredient-tag rounded-full px-3.5 py-2 text-xs font-semibold text-gray-700 flex items-center gap-2"
+              >
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Brocolis frais (200g)
+              </div>
+              <div
+                class="ingredient-tag rounded-full px-3.5 py-2 text-xs font-semibold text-gray-700 flex items-center gap-2"
+              >
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Fromage blanc 0% (125g)
+              </div>
+              <div
+                class="ingredient-tag rounded-full px-3.5 py-2 text-xs font-semibold text-gray-700 flex items-center gap-2"
+              >
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Œufs
+                bio (3 unités)
+              </div>
+              <div
+                class="ingredient-tag rounded-full px-3.5 py-2 text-xs font-semibold text-gray-700 flex items-center gap-2"
+              >
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Lait
+                demi-écrémé (250ml)
+              </div>
+              <div
+                class="ingredient-tag rounded-full px-3.5 py-2 text-xs font-semibold text-gray-700 flex items-center gap-2"
+              >
+                <span class="w-2 h-2 rounded-full bg-amber-500"></span> Houmous
+                de sésame (120g)
+              </div>
+              <div
+                class="ingredient-tag rounded-full px-3.5 py-2 text-xs font-semibold text-gray-700 flex items-center gap-2"
+              >
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Tomates cerises (100g)
+              </div>
+              <div
+                class="ingredient-tag rounded-full px-3.5 py-2 text-xs font-semibold text-gray-700 flex items-center gap-2"
+              >
+                <span class="w-2 h-2 rounded-full bg-amber-500"></span> 1 Banane
+                mûre
+              </div>
+            </div>
+
+            <!-- IA Diagnostic Message -->
+            <div
+              class="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200/80 rounded-2xl p-4 text-xs space-y-1.5 text-emerald-900"
+            >
+              <div class="font-bold flex items-center gap-2 text-emerald-950">
+                <svg
+                  class="w-4 h-4 text-emerald-700"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span
+                  >Diagnostic IA : Excellente base pour un repas anti-bouffées
+                  de chaleur & synthèse protéique</span
+                >
+              </div>
+              <p class="text-emerald-800 leading-relaxed">
+                La combinaison Brocolis (Indole-3-carbinol) + Poulet & Fromage
+                Blanc offre la dose idéale de
+                <strong>38g de leucine/protéines</strong> et optimise
+                l'élimination des métabolites d'œstrogènes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2 : RÉSULTAT DE LA RECETTE + PAYWALL MODERNE -->
+      <section class="relative">
+        <!-- Recipe Card Container (Partially blurred if locked) -->
+        <div
+          id="recipeCard"
+          class="glass-panel rounded-3xl p-6 sm:p-8 space-y-8 blur-paywall transition-all duration-700"
+        >
+          <!-- Recipe Header -->
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-6"
+          >
+            <div>
+              <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2"
+              >
+                🥗 Recette Optimisée Périménopause #48
+              </div>
+              <h2
+                class="text-2xl sm:text-3xl font-bold text-[#132d20] font-serif-title"
+              >
+                Bowl Chaud Protéiné au Brocoli Vapeur, Émincé de Poulet Doré &
+                Sauce Onctueuse Fromage Blanc-Sésame
+              </h2>
+              <div
+                class="flex flex-wrap items-center gap-4 mt-3 text-xs text-gray-500"
+              >
+                <span class="flex items-center gap-1.5 font-medium"
+                  >⏱️ 12 min de préparation</span
+                >
+                <span class="flex items-center gap-1.5 font-medium"
+                  >🔥 Cuisson douce 8 min</span
+                >
+                <span
+                  class="flex items-center gap-1.5 font-medium text-emerald-700 font-bold"
+                  >⚡ Indice Glycémique : Très Bas (<25)</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Pillars Highlights for Menopause -->
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div
+              class="rounded-2xl p-4 bg-orange-50/70 border border-orange-200 space-y-1"
+            >
+              <div
+                class="text-xs font-bold text-orange-950 uppercase tracking-wide flex items-center justify-between"
+              >
+                <span>Masse Musculaire</span>
+                <span class="text-base">🍗</span>
+              </div>
+              <div class="text-2xl font-black text-orange-800">38.5 g</div>
+              <div class="text-[11px] text-orange-900/80 font-medium">
+                Protéines biodisponibles à haute teneur en leucine
+              </div>
+            </div>
+
+            <div
+              class="rounded-2xl p-4 bg-blue-50/70 border border-blue-200 space-y-1"
+            >
+              <div
+                class="text-xs font-bold text-blue-950 uppercase tracking-wide flex items-center justify-between"
+              >
+                <span>Santé Osseuse</span>
+                <span class="text-base">🦴</span>
+              </div>
+              <div class="text-2xl font-black text-blue-800">410 mg</div>
+              <div class="text-[11px] text-blue-900/80 font-medium">
+                Calcium naturel + synergie Vitamine K du brocoli
+              </div>
+            </div>
+
+            <div
+              class="rounded-2xl p-4 bg-purple-50/70 border border-purple-200 space-y-1"
+            >
+              <div
+                class="text-xs font-bold text-purple-950 uppercase tracking-wide flex items-center justify-between"
+              >
+                <span>Microbiote & Satiété</span>
+                <span class="text-base">🌾</span>
+              </div>
+              <div class="text-2xl font-black text-purple-800">8.2 g</div>
+              <div class="text-[11px] text-purple-900/80 font-medium">
+                Fibres prébiotiques anti-gonflement abdominal
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Steps & Nutritional Science -->
+          <div class="grid md:grid-cols-12 gap-8 pt-2">
+            <!-- Left: Cooking steps -->
+            <div class="md:col-span-7 space-y-4">
+              <h3
+                class="text-base font-bold text-[#132d20] flex items-center gap-2"
+              >
+                <span>👨‍🍳</span> Instructions de préparation minute
+              </h3>
+
+              <div class="space-y-3">
+                <div
+                  class="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50 border border-gray-100"
+                >
+                  <span
+                    class="w-6 h-6 rounded-full bg-[#1e4531] text-white flex items-center justify-center text-xs font-bold shrink-0"
+                    >1</span
+                  >
+                  <p class="text-xs text-gray-700 leading-relaxed">
+                    <strong>Cuisson douce des brocolis :</strong> Cuire les 200g
+                    de fleurettes de brocolis à la vapeur pendant 6 à 7 minutes
+                    pour préserver l'<strong>indole-3-carbinol</strong> intact
+                    (fragile à haute température).
+                  </p>
+                </div>
+
+                <div
+                  class="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50 border border-gray-100"
+                >
+                  <span
+                    class="w-6 h-6 rounded-full bg-[#1e4531] text-white flex items-center justify-center text-xs font-bold shrink-0"
+                    >2</span
+                  >
+                  <p class="text-xs text-gray-700 leading-relaxed">
+                    <strong>Préparation de l'émulsion protéinée :</strong>
+                    Mélanger 125g de fromage blanc 0% avec 1 cuillère à soupe de
+                    houmous (sésame/tahin), un filet de jus de citron, sel aux
+                    herbes et poivre. Cette sauce apporte calcium et lignanes.
+                  </p>
+                </div>
+
+                <div
+                  class="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50 border border-gray-100"
+                >
+                  <span
+                    class="w-6 h-6 rounded-full bg-[#1e4531] text-white flex items-center justify-center text-xs font-bold shrink-0"
+                    >3</span
+                  >
+                  <p class="text-xs text-gray-700 leading-relaxed">
+                    <strong>Assemblage anti-inflammatoire :</strong> Disposer
+                    les brocolis chauds, effilocher les 150g de poulet, ajouter
+                    les tomates cerises coupées en deux (lycopène antioxydant)
+                    et napper avec l'émulsion au fromage blanc.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Hormonal Impact Summary -->
+            <div class="md:col-span-5 space-y-4">
+              <h3
+                class="text-base font-bold text-[#132d20] flex items-center gap-2"
+              >
+                <span>🧬</span> Impact Métabolique & Hormonal
+              </h3>
+
+              <div
+                class="bg-[#132d20] text-emerald-100 rounded-2xl p-5 space-y-3 text-xs"
+              >
+                <div
+                  class="flex items-center justify-between font-bold text-amber-300 pb-2 border-b border-emerald-800"
+                >
+                  <span>Régulation de l'Insuline</span>
+                  <span>Pic Glycémique Évité 📉</span>
+                </div>
+                <p class="leading-relaxed text-emerald-100/90">
+                  L'absence de glucides raffinés combinée aux 38g de protéines
+                  et aux fibres insolubles prévient le stockage abdominal
+                  typique de la baisse d'estradiol.
+                </p>
+                <div
+                  class="pt-2 border-t border-emerald-800/80 space-y-1.5 text-[11px]"
+                >
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Calories totales :</span>
+                    <span class="font-bold text-white">435 kcal</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Glucides nets :</span>
+                    <span class="font-bold text-white"
+                      >14 g (dont sucres 6g)</span
+                    >
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-400">Lipides sains :</span>
+                    <span class="font-bold text-white">12 g</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYWALL OVERLAY (Displayed over the blurred recipe) -->
+        <div
+          id="paywallOverlay"
+          class="absolute inset-0 flex items-center justify-center p-4 z-20"
+        >
+          <div
+            class="max-w-xl w-full bg-white/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-emerald-100 shadow-2xl text-center space-y-5 animate-fade-in relative overflow-hidden"
+          >
+            <!-- Decorative Glow & Lock Icon -->
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-900 mx-auto flex items-center justify-center shadow-lg transform -rotate-3 hover:rotate-0 transition"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.2"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+            </div>
+
+            <div class="space-y-2">
+              <div
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full shimmer-badge text-amber-900 text-xs font-bold border border-amber-300 shadow-sm"
+              >
+                <span
+                  >✨ Scan Réussi · Recette & Dosages Personnalisés Prêts</span
+                >
+              </div>
+              <h3
+                class="text-xl sm:text-2xl font-bold text-[#132d20] font-serif-title"
+              >
+                Débloquez votre recette sur-mesure & votre plan nutritionnel
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-600 max-w-md mx-auto">
+                Accédez immédiatement à vos recettes adaptées à la
+                périménopause, aux grammages exacts et aux conseils hormonaux.
+              </p>
+            </div>
+
+            <!-- Highlight Offer Box: 7 Days Free Trial then 7.99€/month -->
+            <div
+              class="bg-gradient-to-br from-emerald-900 to-[#132d20] text-white rounded-2xl p-4 sm:p-5 text-left relative overflow-hidden shadow-md"
+            >
+              <div
+                class="absolute -right-10 -bottom-10 w-28 h-28 bg-emerald-400/20 rounded-full blur-xl"
+              ></div>
+
+              <div class="flex items-start justify-between gap-2 mb-3">
+                <div>
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-wider text-amber-300 block"
+                    >Formule Découverte Sans Risque</span
+                  >
+                  <h4 class="text-base font-bold text-white">
+                    Essai Gratuit de 7 Jours
+                  </h4>
+                </div>
+                <div class="text-right">
+                  <span class="text-xl font-extrabold text-amber-300"
+                    >0,00 €</span
+                  >
+                  <span class="text-[10px] text-emerald-200 block"
+                    >Aujourd'hui</span
+                  >
+                </div>
+              </div>
+
+              <ul
+                class="text-xs text-emerald-100 space-y-2 border-t border-emerald-800/80 pt-3"
+              >
+                <li class="flex items-center gap-2">
+                  <svg
+                    class="w-4 h-4 text-emerald-400 shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span
+                    ><strong>0 € débité pendant 7 jours</strong> (testez sans
+                    engagement)</span
+                  >
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg
+                    class="w-4 h-4 text-emerald-400 shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span
+                    >Puis seulement <strong>7,99 € / mois</strong> (annulation
+                    en 1 clic depuis votre compte)</span
+                  >
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg
+                    class="w-4 h-4 text-emerald-400 shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span
+                    >Scans illimités de frigo + menus équilibrés
+                    quotidiens</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Main CTA to open checkout modal -->
+            <div class="space-y-2 pt-1">
+              <button
+                onclick="openPaywallModal('paywall_card_cta')"
+                class="w-full py-3.5 px-6 rounded-xl gradient-gold-cta text-slate-950 font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition duration-200 transform hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+              >
+                <span>Commencer mes 7 jours gratuits</span>
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </button>
+              <p class="text-[11px] text-gray-500">
+                🔒 Carte requise pour l'inscription · Aucun prélèvement
+                aujourd'hui · Résiliable à tout instant
+              </p>
+            </div>
+
+            <!-- Live quick demo toggle button (For user testing without entering fake card) -->
+            <div
+              class="pt-2 border-t border-gray-100 flex items-center justify-center gap-2"
+            >
+              <button
+                onclick="unlockContentDirectly()"
+                class="text-[11px] text-emerald-700 hover:text-emerald-900 font-semibold underline cursor-pointer"
+              >
+                [Mode Démo Instantané] Débloquer immédiatement la recette
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3 : CE QUE CONTIENT L'ABONNEMENT (RÉASSURANCE) -->
+      <section class="grid md:grid-cols-3 gap-6 pt-4">
+        <div class="glass-panel p-5 rounded-2xl space-y-2">
+          <div
+            class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-lg"
+          >
+            📸
+          </div>
+          <h3 class="font-bold text-sm text-[#132d20]">
+            Scans Frigo & Placards Illimités
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Fini le casse-tête du dîner : prenez une photo de vos restes et
+            obtenez un repas sain en moins de 15 secondes.
+          </p>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl space-y-2">
+          <div
+            class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-lg"
+          >
+            ⚡
+          </div>
+          <h3 class="font-bold text-sm text-[#132d20]">
+            Optimisé Ménopause & Périménopause
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Chaque recette intègre le ratio idéal en phytoestrogènes, protéines
+            (>30g) et minéraux pour réduire les bouffées de chaleur.
+          </p>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl space-y-2">
+          <div
+            class="w-9 h-9 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-lg"
+          >
+            🛡️
+          </div>
+          <h3 class="font-bold text-sm text-[#132d20]">
+            Zéro Engagement & Transparence
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            7 jours 100% gratuits. Si l'application ne vous convient pas,
+            annulez d'un simple clic avant le 7ème jour.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 4 : AVIS PATIENTES 45+ -->
+      <section class="glass-panel p-6 sm:p-8 rounded-3xl space-y-6">
+        <div class="text-center max-w-xl mx-auto space-y-1">
+          <div
+            class="flex items-center justify-center gap-1 text-amber-400 text-sm"
+          >
+            ★★★★★
+          </div>
+          <h3 class="text-xl font-bold text-[#132d20] font-serif-title">
+            Recommandé par +12 000 femmes de 45 à 62 ans
+          </h3>
+          <p class="text-xs text-gray-500">
+            Des repas simples, savoureux et adaptés à vos changements
+            métaboliques.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+          <div
+            class="bg-white p-4 rounded-2xl border border-gray-100 space-y-2 shadow-sm"
+          >
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center"
+              >
+                CP
+              </div>
+              <div>
+                <div class="font-bold text-gray-900">Corinne P., 51 ans</div>
+                <div class="text-[10px] text-gray-400">
+                  Lyon · Périménopause
+                </div>
+              </div>
+            </div>
+            <p class="text-gray-600 italic">
+              "J'avais pris 4 kg au niveau du ventre sans changer mes habitudes.
+              Grâce aux recettes riches en protéines du scan, j'ai retrouvé mon
+              énergie et dégonflé en 3 semaines !"
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-4 rounded-2xl border border-gray-100 space-y-2 shadow-sm"
+          >
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-bold flex items-center justify-center"
+              >
+                MB
+              </div>
+              <div>
+                <div class="font-bold text-gray-900">Martine B., 56 ans</div>
+                <div class="text-[10px] text-gray-400">
+                  Nantes · Ménopause confirmée
+                </div>
+              </div>
+            </div>
+            <p class="text-gray-600 italic">
+              "L'essai de 7 jours m'a convaincue dès le 2ème jour. Le scan est
+              bluffant avec les restes du frigo. À 7,99 € par mois, c'est bien
+              moins cher qu'une seule consultation."
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-4 rounded-2xl border border-gray-100 space-y-2 shadow-sm"
+          >
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 rounded-full bg-purple-100 text-purple-800 font-bold flex items-center justify-center"
+              >
+                SL
+              </div>
+              <div>
+                <div class="font-bold text-gray-900">Sophie L., 47 ans</div>
+                <div class="text-[10px] text-gray-400">
+                  Bordeaux · Périménopause
+                </div>
+              </div>
+            </div>
+            <p class="text-gray-600 italic">
+              "Je ne savais plus quoi cuisiner pour éviter les coups de fatigue
+              de 14h. Les repas proposés calent parfaitement sans lourdeur
+              d'estomac."
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MODAL CHECKOUT / ESSAI GRATUIT 7 JOURS -->
+    <div
+      id="checkoutModal"
+      class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-gray-100 overflow-hidden relative animate-fade-in my-8"
+      >
+        <!-- Close button -->
+        <button
+          onclick="closePaywallModal()"
+          class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center transition cursor-pointer z-10"
+        >
+          ✕
+        </button>
+
+        <!-- Modal Header -->
+        <div class="gradient-forest p-6 text-white text-left relative">
+          <span
+            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-slate-900 uppercase tracking-wide mb-2"
+          >
+            Offre Spéciale Sans Engagement
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold font-serif-title">
+            Activez vos 7 jours d'essai gratuit
+          </h3>
+          <p class="text-xs text-emerald-100/90 mt-1">
+            Débloquez instantanément votre recette et tous les futurs scans de
+            votre frigo.
+          </p>
+        </div>
+
+        <!-- Modal Body Form -->
+        <form
+          id="trialForm"
+          onsubmit="handleTrialSubmit(event)"
+          class="p-6 space-y-4 text-xs"
+        >
+          <!-- Summary pill -->
+          <div
+            class="bg-emerald-50 rounded-2xl p-3.5 border border-emerald-200 flex items-center justify-between"
+          >
+            <div>
+              <div class="font-bold text-emerald-950 text-sm">
+                7 Jours d'Accès Total
+              </div>
+              <div class="text-[11px] text-emerald-800">
+                Puis 7,99 € / mois automatiquement
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-lg font-black text-emerald-900">0,00 €</span>
+              <span class="text-[10px] text-emerald-700 block"
+                >Facturé aujourd'hui</span
+              >
+            </div>
+          </div>
+
+          <!-- Step 1 : Coordonnées -->
+          <div class="space-y-3 pt-1">
+            <label
+              class="block font-bold text-gray-800 uppercase tracking-wider text-[10px]"
+              >1. Créez votre compte</label
+            >
+            <div class="grid grid-cols-2 gap-2">
+              <input
+                type="text"
+                required
+                placeholder="Prénom"
+                class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-emerald-600 text-xs"
+              />
+              <input
+                type="text"
+                required
+                placeholder="Nom"
+                class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-emerald-600 text-xs"
+              />
+            </div>
+            <input
+              type="email"
+              required
+              placeholder="Adresse e-mail (ex: corinne@gmail.com)"
+              class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-emerald-600 text-xs"
+            />
+          </div>
+
+          <!-- Step 2 : Carte Bancaire -->
+          <div class="space-y-3 pt-1">
+            <div class="flex items-center justify-between">
+              <label
+                class="block font-bold text-gray-800 uppercase tracking-wider text-[10px]"
+                >2. Carte Bancaire Sécurisée</label
+              >
+              <div class="flex items-center gap-1.5 text-gray-400">
+                <span class="text-[10px]">🔒 Chiffrement SSL 256-bit</span>
+              </div>
+            </div>
+
+            <div
+              class="space-y-2 bg-gray-50 p-3 rounded-2xl border border-gray-200"
+            >
+              <div class="relative">
+                <input
+                  type="text"
+                  required
+                  placeholder="Numéro de carte (ex: 4970 0000 0000 0000)"
+                  maxlength="19"
+                  class="w-full pl-3 pr-10 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-emerald-600 text-xs"
+                />
+                <span class="absolute right-3 top-2.5 text-gray-400 text-xs"
+                  >💳</span
+                >
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <input
+                  type="text"
+                  required
+                  placeholder="MM/AA"
+                  maxlength="5"
+                  class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-emerald-600 text-xs"
+                />
+                <input
+                  type="text"
+                  required
+                  placeholder="CVC (3 chiffres)"
+                  maxlength="4"
+                  class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-emerald-600 text-xs"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Transparency Guarantee Note -->
+          <div
+            class="text-[11px] text-gray-500 bg-amber-50/70 border border-amber-200 rounded-xl p-3 space-y-1"
+          >
+            <div class="font-bold text-amber-900 flex items-center gap-1.5">
+              <span>🛡️ Règle de transparence NutriMenopause :</span>
+            </div>
+            <p class="text-amber-900/90 leading-tight">
+              Votre carte ne sera
+              <strong>débitée d'aucun centime</strong> pendant 7 jours. À
+              l'issue des 7 jours, votre abonnement se poursuivra
+              automatiquement à <strong>7,99 €/mois</strong>. Vous pouvez
+              résilier d'un simple clic dans vos paramètres à tout moment.
+            </p>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            id="submitBtn"
+            class="w-full py-3.5 px-6 rounded-xl gradient-gold-cta text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg transition duration-200"
+          >
+            <span id="btnText">Démarrer mon essai de 7 jours gratuit</span>
+            <svg
+              id="btnSpinner"
+              class="w-4 h-4 animate-spin hidden"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8H4z"
+              ></path>
+            </svg>
+          </button>
+
+          <p class="text-center text-[10px] text-gray-400 pt-1">
+            En confirmant, vous acceptez nos CGV et notre politique de
+            confidentialité des données de santé.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div
+      id="toastNotification"
+      class="fixed bottom-6 right-6 z-50 max-w-sm w-full bg-[#132d20] text-white p-4 rounded-2xl shadow-2xl border border-emerald-500/30 transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3"
+    >
+      <div
+        class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 text-xl font-bold"
+      >
+        ✓
+      </div>
+      <div class="text-xs">
+        <div class="font-bold text-white text-sm" id="toastTitle">
+          Essai gratuit activé !
+        </div>
+        <div class="text-emerald-200 text-[11px]" id="toastDesc">
+          Votre recette complète et vos dosages sont désormais accessibles.
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer
+      class="bg-white border-t border-gray-200/80 py-8 text-xs text-gray-500 mt-12"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+      >
+        <div
+          class="flex items-center gap-2 font-semibold text-gray-800 font-serif-title text-sm"
+        >
+          <span>🌿 NutriMenopause</span>
+          <span class="text-gray-300">|</span>
+          <span class="font-sans text-xs text-gray-500 font-normal"
+            >Nutrition clinique 45+</span
+          >
+        </div>
+        <div class="flex items-center gap-4 text-[11px]">
+          <a href="#conditions" class="hover:underline"
+            >Conditions d'abonnement (7,99 €/m)</a
+          >
+          <span>·</span>
+          <a href="#confidentialite" class="hover:underline"
+            >Protection des données</a
+          >
+          <span>·</span>
+          <a href="#contact" class="hover:underline"
+            >Support & Nutritionniste</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+      // State management
+      let isUnlocked = false;
+
+      function openPaywallModal(triggerSource) {
+        const modal = document.getElementById("checkoutModal");
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closePaywallModal() {
+        const modal = document.getElementById("checkoutModal");
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
+
+      // Handle 7-Day Free Trial form submission
+      function handleTrialSubmit(e) {
+        e.preventDefault();
+
+        const btnText = document.getElementById("btnText");
+        const btnSpinner = document.getElementById("btnSpinner");
+
+        btnText.innerText = "Validation de l'essai gratuit...";
+        btnSpinner.classList.remove("hidden");
+
+        setTimeout(() => {
+          btnSpinner.classList.add("hidden");
+          closePaywallModal();
+          unlockContentDirectly();
+
+          // Trigger celebratory confetti
+          if (typeof confetti === "function") {
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 },
+            });
+          }
+
+          showToast(
+            "Compte Activé — 7 jours offerts !",
+            "Votre recette complète et tous les prochains scans sont débloqués.",
+          );
+        }, 900);
+      }
+
+      // Direct unlock helper (Removes blur, hides paywall overlay, updates UI)
+      function unlockContentDirectly() {
+        isUnlocked = true;
+        const recipeCard = document.getElementById("recipeCard");
+        const paywallOverlay = document.getElementById("paywallOverlay");
+        const trialBadgeNav = document.getElementById("trialBadgeNav");
+
+        recipeCard.classList.remove("blur-paywall");
+        recipeCard.classList.add("unlocked-content");
+        paywallOverlay.classList.add("hidden");
+
+        if (trialBadgeNav) {
+          trialBadgeNav.innerHTML = `
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span class="text-emerald-800 font-bold">Abonnement Actif (Essai 7j en cours)</span>
+        `;
+        }
+
+        // Scroll smoothly to recipe
+        recipeCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // Simulate Scan Animation when clicking "Relancer un Scan"
+      function simulateScanAnimation() {
+        const scanStatusText = document.getElementById("scanStatusText");
+        const fridgeImage = document.getElementById("fridgeImage");
+        const laser = document.getElementById("scanLaser");
+
+        scanStatusText.innerText = "Analyse des macronutriments en cours...";
+        scanStatusText.classList.remove("text-emerald-200");
+        scanStatusText.classList.add("text-amber-300");
+
+        laser.style.animationDuration = "0.8s";
+
+        setTimeout(() => {
+          laser.style.animationDuration = "2.2s";
+          scanStatusText.innerText =
+            "Scan terminé : 8 Ingrédients clés identifiés avec succès";
+          scanStatusText.classList.add("text-emerald-200");
+          scanStatusText.classList.remove("text-amber-300");
+          showToast(
+            "Scan Frigo Actualisé",
+            "Les données nutritionnelles ont été recalculées pour vos hormones.",
+          );
+        }, 1200);
+      }
+
+      // Helper Toast
+      function showToast(title, desc) {
+        const toast = document.getElementById("toastNotification");
+        document.getElementById("toastTitle").innerText = title;
+        document.getElementById("toastDesc").innerText = desc;
+
+        toast.classList.remove("translate-y-24", "opacity-0");
+        toast.classList.add("translate-y-0", "opacity-100");
+
+        setTimeout(() => {
+          toast.classList.remove("translate-y-0", "opacity-100");
+          toast.classList.add("translate-y-24", "opacity-0");
+        }, 4500);
+      }
+
+      // Close modal on escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closePaywallModal();
+        }
+      });
+    </script>
+  </body>
+</html>
