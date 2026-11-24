@@ -816,19 +816,15 @@
                 <div>
                   <span
                     class="text-[10px] font-bold uppercase tracking-wider text-amber-300 block"
-                    >Formule Découverte Sans Risque</span
+                    >Fonctionnalités en démo</span
                   >
                   <h4 class="text-base font-bold text-white">
                     Accès Démo
                   </h4>
                 </div>
                 <div class="text-right">
-                  <span class="text-xl font-extrabold text-amber-300"
-                    >0,00 €</span
-                  >
-                  <span class="text-[10px] text-emerald-200 block"
-                    >Aujourd'hui</span
-                  >
+                  <span class="text-sm font-bold text-amber-200">Prototype</span>
+                  <span class="text-[10px] text-emerald-200 block">Sans paiement</span>
                 </div>
               </div>
 
@@ -915,7 +911,7 @@
               </p>
             </div>
 
-            <!-- Live quick demo toggle button (For user testing without entering fake card) -->
+            <!-- Demo shortcut for previewing the recipe -->
             <div
               class="pt-2 border-t border-gray-100 flex items-center justify-center gap-2"
             >
@@ -923,14 +919,14 @@
                 onclick="unlockContentDirectly()"
                 class="text-[11px] text-emerald-700 hover:text-emerald-900 font-semibold underline cursor-pointer"
               >
-                [Mode Démo Instantané] Débloquer immédiatement la recette
+                Débloquer la recette (mode démo)
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 3 : CE QUE CONTIENT L'ABONNEMENT (RÉASSURANCE) -->
+      <!-- SECTION 3 : FONCTIONNALITÉS PRÉSENTÉES -->
       <section class="grid md:grid-cols-3 gap-6 pt-4">
         <div class="glass-panel p-5 rounded-2xl space-y-2">
           <div
@@ -1087,7 +1083,7 @@
           <span
             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-slate-900 uppercase tracking-wide mb-2"
           >
-            Offre Spéciale Sans Engagement
+            Prototype interactif
           </span>
           <h3 class="text-xl sm:text-2xl font-bold font-serif-title">
             Découvrez l'accès démo
@@ -1201,6 +1197,10 @@
 
         // Scroll smoothly to recipe
         recipeCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        showToast(
+          "Recette débloquée (démo)",
+          "Ceci est un aperçu du prototype : aucun compte ni abonnement n’a été créé.",
+        );
       }
 
       // Simulate Scan Animation when clicking "Relancer un Scan"
