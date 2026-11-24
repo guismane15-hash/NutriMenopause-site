@@ -165,15 +165,13 @@
           >Offre Découverte</span
         >
         <span
-          >Accès illimité à l’I.A. Nutritionnelle :
-          <strong>7 jours d'essai gratuit</strong> (puis 7,99 €/mois, sans
-          engagement).</span
+          >Démo interactive : explorez les fonctionnalités, sans inscription ni paiement.</span
         >
         <button
           onclick="openPaywallModal('top_bar')"
           class="underline hover:text-white font-semibold ml-1 cursor-pointer"
         >
-          Profiter de l'offre →
+          Essayer la démo →
         </button>
       </div>
     </aside>
@@ -215,13 +213,13 @@
             <span
               class="w-2 h-2 rounded-full bg-emerald-500 pulsing-dot"
             ></span>
-            <span>Essai 7j : 0,00 €</span>
+            <span>Mode démo · gratuit</span>
           </div>
           <button
             onclick="openPaywallModal('nav_button')"
             class="gradient-emerald-cta text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 rounded-xl transition duration-200 flex items-center gap-2 cursor-pointer shadow-sm"
           >
-            <span>Débloquer mon plan</span>
+            <span>Tester la démo</span>
             <svg
               class="w-4 h-4"
               fill="none"
@@ -818,19 +816,15 @@
                 <div>
                   <span
                     class="text-[10px] font-bold uppercase tracking-wider text-amber-300 block"
-                    >Formule Découverte Sans Risque</span
+                    >Fonctionnalités en démo</span
                   >
                   <h4 class="text-base font-bold text-white">
-                    Essai Gratuit de 7 Jours
+                    Accès Démo
                   </h4>
                 </div>
                 <div class="text-right">
-                  <span class="text-xl font-extrabold text-amber-300"
-                    >0,00 €</span
-                  >
-                  <span class="text-[10px] text-emerald-200 block"
-                    >Aujourd'hui</span
-                  >
+                  <span class="text-sm font-bold text-amber-200">Prototype</span>
+                  <span class="text-[10px] text-emerald-200 block">Sans paiement</span>
                 </div>
               </div>
 
@@ -867,8 +861,7 @@
                     />
                   </svg>
                   <span
-                    >Puis seulement <strong>7,99 € / mois</strong> (annulation
-                    en 1 clic depuis votre compte)</span
+                    >Accès à la recette en mode démonstration, sans compte ni paiement</span
                   >
                 </li>
                 <li class="flex items-center gap-2">
@@ -897,7 +890,7 @@
                 onclick="openPaywallModal('paywall_card_cta')"
                 class="w-full py-3.5 px-6 rounded-xl gradient-gold-cta text-slate-950 font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition duration-200 transform hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
               >
-                <span>Commencer mes 7 jours gratuits</span>
+                <span>Débloquer la recette (démo)</span>
                 <svg
                   class="w-5 h-5"
                   fill="none"
@@ -918,7 +911,7 @@
               </p>
             </div>
 
-            <!-- Live quick demo toggle button (For user testing without entering fake card) -->
+            <!-- Demo shortcut for previewing the recipe -->
             <div
               class="pt-2 border-t border-gray-100 flex items-center justify-center gap-2"
             >
@@ -926,14 +919,14 @@
                 onclick="unlockContentDirectly()"
                 class="text-[11px] text-emerald-700 hover:text-emerald-900 font-semibold underline cursor-pointer"
               >
-                [Mode Démo Instantané] Débloquer immédiatement la recette
+                Débloquer la recette (mode démo)
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 3 : CE QUE CONTIENT L'ABONNEMENT (RÉASSURANCE) -->
+      <!-- SECTION 3 : FONCTIONNALITÉS PRÉSENTÉES -->
       <section class="grid md:grid-cols-3 gap-6 pt-4">
         <div class="glass-panel p-5 rounded-2xl space-y-2">
           <div
@@ -1039,9 +1032,7 @@
               </div>
             </div>
             <p class="text-gray-600 italic">
-              "L'essai de 7 jours m'a convaincue dès le 2ème jour. Le scan est
-              bluffant avec les restes du frigo. À 7,99 € par mois, c'est bien
-              moins cher qu'une seule consultation."
+              "La démo m'a permis de découvrir les idées de recettes et les conseils nutritionnels."
             </p>
           </div>
 
@@ -1071,7 +1062,7 @@
       </section>
     </main>
 
-    <!-- MODAL CHECKOUT / ESSAI GRATUIT 7 JOURS -->
+    <!-- MODAL DEMO RECIPE UNLOCK -->
     <div
       id="checkoutModal"
       class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
@@ -1092,171 +1083,32 @@
           <span
             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-slate-900 uppercase tracking-wide mb-2"
           >
-            Offre Spéciale Sans Engagement
+            Prototype interactif
           </span>
           <h3 class="text-xl sm:text-2xl font-bold font-serif-title">
-            Activez vos 7 jours d'essai gratuit
+            Découvrez l'accès démo
           </h3>
           <p class="text-xs text-emerald-100/90 mt-1">
-            Débloquez instantanément votre recette et tous les futurs scans de
-            votre frigo.
+            Prévisualisez la recette en mode démo, sans compte ni paiement.
           </p>
         </div>
 
-        <!-- Modal Body Form -->
-        <form
-          id="trialForm"
-          onsubmit="handleTrialSubmit(event)"
-          class="p-6 space-y-4 text-xs"
-        >
-          <!-- Summary pill -->
-          <div
-            class="bg-emerald-50 rounded-2xl p-3.5 border border-emerald-200 flex items-center justify-between"
-          >
-            <div>
-              <div class="font-bold text-emerald-950 text-sm">
-                7 Jours d'Accès Total
-              </div>
-              <div class="text-[11px] text-emerald-800">
-                Puis 7,99 € / mois automatiquement
-              </div>
-            </div>
-            <div class="text-right">
-              <span class="text-lg font-black text-emerald-900">0,00 €</span>
-              <span class="text-[10px] text-emerald-700 block"
-                >Facturé aujourd'hui</span
-              >
-            </div>
+        <!-- Modal Body: demo-only unlock -->
+        <div class="p-6 space-y-4 text-sm">
+          <div class="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-950">
+            <p class="font-bold text-base">Accès de démonstration</p>
+            <p class="mt-1 text-sm text-emerald-800">Cette page est un prototype. Aucun compte n'est créé, aucun paiement n'est effectué et aucun abonnement n'est activé.</p>
           </div>
-
-          <!-- Step 1 : Coordonnées -->
-          <div class="space-y-3 pt-1">
-            <label
-              class="block font-bold text-gray-800 uppercase tracking-wider text-[10px]"
-              >1. Créez votre compte</label
-            >
-            <div class="grid grid-cols-2 gap-2">
-              <input
-                type="text"
-                required
-                placeholder="Prénom"
-                class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-emerald-600 text-xs"
-              />
-              <input
-                type="text"
-                required
-                placeholder="Nom"
-                class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-emerald-600 text-xs"
-              />
-            </div>
-            <input
-              type="email"
-              required
-              placeholder="Adresse e-mail (ex: corinne@gmail.com)"
-              class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-emerald-600 text-xs"
-            />
-          </div>
-
-          <!-- Step 2 : Carte Bancaire -->
-          <div class="space-y-3 pt-1">
-            <div class="flex items-center justify-between">
-              <label
-                class="block font-bold text-gray-800 uppercase tracking-wider text-[10px]"
-                >2. Carte Bancaire Sécurisée</label
-              >
-              <div class="flex items-center gap-1.5 text-gray-400">
-                <span class="text-[10px]">🔒 Chiffrement SSL 256-bit</span>
-              </div>
-            </div>
-
-            <div
-              class="space-y-2 bg-gray-50 p-3 rounded-2xl border border-gray-200"
-            >
-              <div class="relative">
-                <input
-                  type="text"
-                  required
-                  placeholder="Numéro de carte (ex: 4970 0000 0000 0000)"
-                  maxlength="19"
-                  class="w-full pl-3 pr-10 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-emerald-600 text-xs"
-                />
-                <span class="absolute right-3 top-2.5 text-gray-400 text-xs"
-                  >💳</span
-                >
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <input
-                  type="text"
-                  required
-                  placeholder="MM/AA"
-                  maxlength="5"
-                  class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-emerald-600 text-xs"
-                />
-                <input
-                  type="text"
-                  required
-                  placeholder="CVC (3 chiffres)"
-                  maxlength="4"
-                  class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-emerald-600 text-xs"
-                />
-              </div>
-            </div>
-          </div>
-
-          <!-- Transparency Guarantee Note -->
-          <div
-            class="text-[11px] text-gray-500 bg-amber-50/70 border border-amber-200 rounded-xl p-3 space-y-1"
-          >
-            <div class="font-bold text-amber-900 flex items-center gap-1.5">
-              <span>🛡️ Règle de transparence NutriMenopause :</span>
-            </div>
-            <p class="text-amber-900/90 leading-tight">
-              Votre carte ne sera
-              <strong>débitée d'aucun centime</strong> pendant 7 jours. À
-              l'issue des 7 jours, votre abonnement se poursuivra
-              automatiquement à <strong>7,99 €/mois</strong>. Vous pouvez
-              résilier d'un simple clic dans vos paramètres à tout moment.
-            </p>
-          </div>
-
-          <!-- Submit Button -->
-          <button
-            type="submit"
-            id="submitBtn"
-            class="w-full py-3.5 px-6 rounded-xl gradient-gold-cta text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg transition duration-200"
-          >
-            <span id="btnText">Démarrer mon essai de 7 jours gratuit</span>
-            <svg
-              id="btnSpinner"
-              class="w-4 h-4 animate-spin hidden"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                class="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                stroke-width="4"
-              ></circle>
-              <path
-                class="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8H4z"
-              ></path>
-            </svg>
+          <button type="button" onclick="closePaywallModal(); unlockContentDirectly();" class="w-full py-3.5 px-6 rounded-xl gradient-gold-cta text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg transition duration-200">
+            Voir la recette (démo)
           </button>
-
-          <p class="text-center text-[10px] text-gray-400 pt-1">
-            En confirmant, vous acceptez nos CGV et notre politique de
-            confidentialité des données de santé.
-          </p>
-        </form>
+          <p class="text-center text-xs text-gray-500">Démo locale de l'interface uniquement — les scans ne sont pas réellement exécutés.</p>
+        </div>
       </div>
     </div>
 
     <!-- TOAST NOTIFICATION -->
+
     <div
       id="toastNotification"
       class="fixed bottom-6 right-6 z-50 max-w-sm w-full bg-[#132d20] text-white p-4 rounded-2xl shadow-2xl border border-emerald-500/30 transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3"
@@ -1268,10 +1120,10 @@
       </div>
       <div class="text-xs">
         <div class="font-bold text-white text-sm" id="toastTitle">
-          Essai gratuit activé !
+          Démo activée !
         </div>
         <div class="text-emerald-200 text-[11px]" id="toastDesc">
-          Votre recette complète et vos dosages sont désormais accessibles.
+          La recette est visible en mode démo.
         </div>
       </div>
     </div>
@@ -1294,7 +1146,7 @@
         </div>
         <div class="flex items-center gap-4 text-[11px]">
           <a href="#conditions" class="hover:underline"
-            >Conditions d'abonnement (7,99 €/m)</a
+            >Fonctionnement de la démo</a
           >
           <span>·</span>
           <a href="#confidentialite" class="hover:underline"
@@ -1325,37 +1177,6 @@
         document.body.style.overflow = "auto";
       }
 
-      // Handle 7-Day Free Trial form submission
-      function handleTrialSubmit(e) {
-        e.preventDefault();
-
-        const btnText = document.getElementById("btnText");
-        const btnSpinner = document.getElementById("btnSpinner");
-
-        btnText.innerText = "Validation de l'essai gratuit...";
-        btnSpinner.classList.remove("hidden");
-
-        setTimeout(() => {
-          btnSpinner.classList.add("hidden");
-          closePaywallModal();
-          unlockContentDirectly();
-
-          // Trigger celebratory confetti
-          if (typeof confetti === "function") {
-            confetti({
-              particleCount: 100,
-              spread: 70,
-              origin: { y: 0.6 },
-            });
-          }
-
-          showToast(
-            "Compte Activé — 7 jours offerts !",
-            "Votre recette complète et tous les prochains scans sont débloqués.",
-          );
-        }, 900);
-      }
-
       // Direct unlock helper (Removes blur, hides paywall overlay, updates UI)
       function unlockContentDirectly() {
         isUnlocked = true;
@@ -1370,12 +1191,16 @@
         if (trialBadgeNav) {
           trialBadgeNav.innerHTML = `
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span class="text-emerald-800 font-bold">Abonnement Actif (Essai 7j en cours)</span>
+          <span class="text-emerald-800 font-bold">Recette débloquée · Mode démo</span>
         `;
         }
 
         // Scroll smoothly to recipe
         recipeCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        showToast(
+          "Recette débloquée (démo)",
+          "Ceci est un aperçu du prototype : aucun compte ni abonnement n’a été créé.",
+        );
       }
 
       // Simulate Scan Animation when clicking "Relancer un Scan"
